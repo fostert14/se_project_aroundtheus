@@ -11,29 +11,40 @@
     <title>Around the U.S.</title>
   </head>
   <body class="page">
-    <div class="page__content">
-      <header class="header page__section">
+    <header class="header page__section">
+      <img
+        class="header__logo"
+        src="./images/around-logo.svg"
+        alt="Around the U.S. Logo"
+      />
+    </header>
+    <main class="page__section">
+      <section class="profile">
         <img
-          class="header__logo"
-          src="./images/around-logo.svg"
-          alt="Around the U.S. Logo"
+          class="profile__picture"
+          src="./images/jacques-cousteau.jpg"
+          alt="Profile Picture"
         />
-      </header>
-      <main class="content page__section">
-        <section class="profile">
+        <div class="profile__info">
+          <h1 class="profile__info-name">Jacques Cousteau</h1>
+          <button class="profile__edit-button"></button>
+          <p class="profile__info-description">Explorer</p>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="content">
+        <div class="content__card card">
           <img
-            class="profile__picture"
-            src="./images/jacques-cousteau.jpg"
-            alt="Profile Picture"
+            src="./images/yosemite.jpg"
+            class="content__card-image"
+            alt="Picture of Yosemite Valley"
           />
-          <div class="profile__info">
-            <h1 class="profile__info-name">Jacques Cousteau</h1>
-            <button class="profile__edit-button"></button>
-            <p class="profile__info-description">Explorer</p>
+          <div class="content__card-items">
+            <p>Yosemite Valley</p>
+            <button class="content__card-button"></button>
           </div>
-          <button class="profile__add-button"></button>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
