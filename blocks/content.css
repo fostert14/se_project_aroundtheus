@@ -1,5 +1,8 @@
 .content {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(282px, auto));
+  justify-content: center;
+  gap: 20px 17px;
 }
 
 .content__card {
@@ -7,13 +10,16 @@
   width: 282px;
   height: 361px;
   background-color: white;
-  font-family: Inter;
+  font-family: Inter, sans-serif, serif;
   font-weight: 900;
   line-height: 29px;
   border-radius: 10px;
   color: black;
   overflow: hidden;
   flex-direction: column;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .content__card-image {

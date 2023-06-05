@@ -1,7 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  margin-top: 45px;
+  padding-top: 45px;
   border-bottom: solid #545454 1px;
 }
 
@@ -9,4 +9,15 @@
   height: 33px;
   width: 173px;
   margin: 45px auto 41px 0;
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    padding-top: 28px;
+  }
+  .header__logo {
+    margin: 0 0 32px 27px;
+    width: 126px;
+    height: 24px;
+  }
 }
