@@ -17,3 +17,13 @@ This project is made so all the elements are displayed correctly on popular scre
 **Improvements**
 
 A goal is to make the heart buttons interactable so they turn red when the user likes the image.
+
+**Technologies Used**
+
+- HTML
+- CSS
+- Grid Display
+- Flex Display
+- Buttons
+
+Site Live at https://fostert14.github.io/se_project_aroundtheus/

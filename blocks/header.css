@@ -1,8 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  padding-top: 45px;
-  border-bottom: solid #545454 1px;
+  border-bottom: solid rgba(84, 84, 84, 0.7) 1px;
 }
 
 .header__logo {
