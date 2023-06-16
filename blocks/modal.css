@@ -109,10 +109,14 @@
 
   .modal__container-title {
     margin-bottom: 75px;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   .modal__submit-button {
     width: 238px;
+    font-size: 14px;
+    line-height: 17px;
   }
 
   .modal__form-input {
