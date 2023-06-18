@@ -50,6 +50,10 @@
   background-color: transparent;
 }
 
+.modal__exit-button:hover {
+  cursor: pointer;
+}
+
 .modal__container-title {
   font-family: Inter, sans-serif, serif;
   font-weight: 900;
