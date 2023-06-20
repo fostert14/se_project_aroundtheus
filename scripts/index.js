@@ -25,11 +25,33 @@ const initialCards = [
   },
 ];
 
+// Elements
+
 let editButton = document.querySelector(".profile__edit-button");
 let elementModal = document.querySelector(".modal");
+let profileFormElement = document.querySelector(".modal__form");
 let exitButton = document.querySelector(".modal__exit-button");
+let profileName = document.querySelector(".profile__info-name");
+let profileDescription = document.querySelector(".profile__info-description");
+let nameInput = document.querySelector('input[name="name"]');
+let descriptionInput = document.querySelector('input[name="description"]');
+
+//Functions
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = descriptionInput.value;
+  elementModal.classList.remove("modal_opened");
+}
+
+//EventListeners
+
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 editButton.addEventListener("click", function () {
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
   elementModal.classList.add("modal_opened");
 });
 
