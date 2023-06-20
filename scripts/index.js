@@ -43,6 +43,11 @@ const cardTemplate =
 
 //Functions
 
+//toggle modal function
+function toggleModal(modal) {
+  modal.classList.toggle("modal_opened");
+}
+
 function getCardData(cardData) {
   //clone the template element with all its content and store it in a cardElement variable
   const cardElement = cardTemplate.cloneNode(true);
@@ -64,7 +69,14 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  profileModal.classList.remove("modal_opened");
+  toggleModal(profileModal);
+}
+
+//open modal and get fields to carry over
+
+function openModal(button) {
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
 }
 
 //EventListeners
@@ -72,13 +84,12 @@ function handleProfileFormSubmit(evt) {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 editButton.addEventListener("click", function () {
-  nameInput.value = profileName.textContent;
-  descriptionInput.value = profileDescription.textContent;
-  profileModal.classList.add("modal_opened");
+  openModal(editButton);
+  toggleModal(profileModal);
 });
 
 profileModalCloseButton.addEventListener("click", function () {
-  profileModal.classList.remove("modal_opened");
+  toggleModal(profileModal);
 });
 
 initialCards.forEach((cardData) => {
