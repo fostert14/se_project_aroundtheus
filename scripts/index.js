@@ -27,16 +27,16 @@ const initialCards = [
 
 // Elements
 
-let editButton = document.querySelector(".profile__edit-button");
-let elementModal = document.querySelector(".modal");
-let profileFormElement = document.querySelector(".modal__form");
-let exitButton = document.querySelector(".modal__exit-button");
-let profileName = document.querySelector(".profile__info-name");
-let profileDescription = document.querySelector(".profile__info-description");
-let nameInput = document.querySelector('input[name="name"]');
-let descriptionInput = document.querySelector('input[name="description"]');
-let cardSection = document.querySelector(".content");
-let cardTemplate =
+const editButton = document.querySelector(".profile__edit-button");
+const elementModal = document.querySelector(".modal");
+const profileFormElement = document.querySelector(".modal__form");
+const exitButton = document.querySelector(".modal__exit-button");
+const profileName = document.querySelector(".profile__info-name");
+const profileDescription = document.querySelector(".profile__info-description");
+const nameInput = document.querySelector('input[name="name"]');
+const descriptionInput = document.querySelector('input[name="description"]');
+const cardSection = document.querySelector(".content");
+const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 //Functions
@@ -45,14 +45,14 @@ function getCardData(cardData) {
   //clone the template element with all its content and store it in a cardElement variable
   const cardElement = cardTemplate.cloneNode(true);
   //access the card title and image and store them in variables
-  const cardImageTemplate = cardElement.querySelector(".content__card-image");
-  const cardTitleTemplate = cardElement.querySelector(".content__card-text");
+  const cardImageElement = cardElement.querySelector(".content__card-image");
+  const cardTitleElement = cardElement.querySelector(".content__card-text");
   //set the path to the image to the link field of the object
-  cardImageTemplate.src = cardData.link;
+  cardImageElement.src = cardData.link;
   //set the image alt text to the name field of the object
-  cardImageTemplate.alt = cardData.name;
+  cardImageElement.alt = cardData.name;
   //set the card title to the name field of the object, too
-  cardTitleTemplate.textContent = cardData.name;
+  cardTitleElement.textContent = cardData.name;
   //return the ready HTML element with the filled-in data
   return cardElement;
 }
