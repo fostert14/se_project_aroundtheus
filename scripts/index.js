@@ -43,9 +43,15 @@ const cardTemplate =
 
 //Functions
 
-//toggle modal function
-function toggleModal(modal) {
-  modal.classList.toggle("modal_opened");
+//open modal function
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+}
+
+//close modal function
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
 function getCardData(cardData) {
@@ -69,12 +75,12 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  toggleModal(profileModal);
+  closeModal(profileModal);
 }
 
 //open modal and get fields to carry over
 
-function openModal(button) {
+function fillProfileForm() {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
 }
@@ -84,12 +90,12 @@ function openModal(button) {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 editButton.addEventListener("click", function () {
-  openModal(editButton);
-  toggleModal(profileModal);
+  fillProfileForm(editButton);
+  openModal(profileModal);
 });
 
 profileModalCloseButton.addEventListener("click", function () {
-  toggleModal(profileModal);
+  closeModal(profileModal);
 });
 
 initialCards.forEach((cardData) => {
