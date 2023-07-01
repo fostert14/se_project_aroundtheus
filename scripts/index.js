@@ -35,6 +35,7 @@ const profileFormElement = document.querySelector(".modal__form");
 const profileModalCloseButton = profileModal.querySelector(
   ".modal__exit-button"
 );
+const imageModalCloseButton = imageModal.querySelector(".modal__exit-button");
 const addImageButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__info-description");
@@ -106,6 +107,10 @@ addImageButton.addEventListener("click", function () {
 
 profileModalCloseButton.addEventListener("click", function () {
   closeModal(profileModal);
+});
+
+imageModalCloseButton.addEventListener("click", function () {
+  closeModal(imageModal);
 });
 
 initialCards.forEach((cardData) => {
