@@ -104,6 +104,9 @@ function handleImageFormSubmit(evt) {
   renderCard({ link, name });
 
   closeModal(imageModal);
+
+  cardTitleInput.value = "";
+  cardLinkInput.value = "";
 }
 
 //              //
@@ -121,7 +124,7 @@ editButton.addEventListener("click", function () {
 
 // Add Image Modal
 addImageButton.addEventListener("click", function () {
-  fillProfileForm(addImageButton);
+  //fillImageForm(addImageButton);
   openModal(imageModal);
 });
 
