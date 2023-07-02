@@ -39,7 +39,7 @@
   align-items: center;
 }
 
-.content__card-button {
+.content__card-like-button {
   background-color: transparent;
   background-image: url("../images/Heart.svg");
   background-repeat: no-repeat;
@@ -50,7 +50,11 @@
   transition: opacity 0.1s linear;
 }
 
-.content__card-button:hover {
+.content__card-like-button_clicked {
+  background-image: url("../images/black_heart.svg");
+}
+
+.content__card-like-button:hover {
   opacity: 0.5;
   cursor: pointer;
 }
