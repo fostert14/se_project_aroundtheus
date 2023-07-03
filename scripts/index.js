@@ -91,15 +91,16 @@ function getCardData(cardData) {
     ".content__card-delete-button"
   );
 
-  cardImageElement.addEventListener("click", function () {
-    openModal(imagePreviewModal);
-  });
+  //image Modal DOM
+  const modalImageElement =
+    imagePreviewModal.querySelector(".modal__card-image");
+  const modalTextElement = imagePreviewModal.querySelector(
+    ".image__modal-title"
+  );
+
   deleteButton.addEventListener("click", function () {
     cardElement.remove();
   });
-
-  //add click listener to the cardImage element
-  //openModal with previewImageModal
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("content__card-like-button_clicked");
@@ -107,6 +108,14 @@ function getCardData(cardData) {
   cardImageElement.src = cardData.link;
   cardImageElement.alt = cardData.name;
   cardTitleElement.textContent = cardData.name;
+
+  //Open Image Preview
+  cardImageElement.addEventListener("click", () => {
+    openModal(imagePreviewModal);
+    modalImageElement.src = cardData.link;
+    modalTextElement.textContent = cardData.name;
+    modalTextElement.alt = cardData.name;
+  });
 
   return cardElement;
 }

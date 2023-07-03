@@ -118,7 +118,7 @@
 
 .modal__image {
   position: fixed;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   background-size: cover;
@@ -141,12 +141,13 @@
   border-radius: 10px;
   box-sizing: border-box;
   position: relative;
-  margin: 90px;
+  margin: 70px 90px;
 }
 
 .modal__card-image {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .image__modal-title {
