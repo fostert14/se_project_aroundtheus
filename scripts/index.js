@@ -77,6 +77,13 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
+//Have fields to carry over when opening modal
+
+function fillProfileForm() {
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
+}
+
 function renderCard(cardData) {
   const cardElement = getCardData(cardData);
   cardSection.prepend(cardElement);
@@ -120,13 +127,6 @@ function getCardData(cardData) {
   return cardElement;
 }
 
-//open modal and get fields to carry over
-
-function fillProfileForm() {
-  nameInput.value = profileName.textContent;
-  descriptionInput.value = profileDescription.textContent;
-}
-
 //change input of submitted form
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -144,8 +144,7 @@ function handleImageFormSubmit(evt) {
 
   closeModal(addImageModal);
 
-  cardTitleInput.value = "";
-  cardLinkInput.value = "";
+  imageFormElement.reset();
 }
 
 //              //
@@ -157,7 +156,7 @@ imageFormElement.addEventListener("submit", handleImageFormSubmit);
 
 // Edit Profile Modal
 editButton.addEventListener("click", function () {
-  fillProfileForm(editButton);
+  fillProfileForm();
   openModal(profileModal);
 });
 

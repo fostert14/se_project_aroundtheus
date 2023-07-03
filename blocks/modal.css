@@ -53,6 +53,7 @@
   background-size: cover;
   border: none;
   background-color: transparent;
+  transition: opacity 0.1s linear;
 }
 
 .modal__exit-button_image {
@@ -66,13 +67,16 @@
   background-size: cover;
   border: none;
   background-color: transparent;
+  transition: opacity 0.1s linear;
 }
 
 .modal__exit-button_image:hover {
+  opacity: 0.6;
   cursor: pointer;
 }
 
 .modal__exit-button:hover {
+  opacity: 0.4;
   cursor: pointer;
 }
 
@@ -118,6 +122,13 @@
   align-items: center;
   justify-content: center;
   margin: 18px 0 0 0;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.1s linear;
+}
+
+.modal__submit-button:hover {
+  opacity: 0.8;
   cursor: pointer;
 }
 
