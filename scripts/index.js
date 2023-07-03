@@ -95,7 +95,7 @@ function getCardData(cardData) {
   const modalImageElement =
     imagePreviewModal.querySelector(".modal__card-image");
   const modalTextElement = imagePreviewModal.querySelector(
-    ".image__modal-title"
+    ".modal__image-title"
   );
 
   deleteButton.addEventListener("click", function () {

@@ -121,7 +121,7 @@
   cursor: pointer;
 }
 
-.modal__image {
+.modal_image {
   position: fixed;
   align-items: flex-start;
   justify-content: center;
@@ -155,7 +155,7 @@
   object-fit: contain;
 }
 
-.image__modal-title {
+.modal__image-title {
   font-family: Inter, sans-serif, serif;
   font-weight: 400;
   font-size: 12px;
