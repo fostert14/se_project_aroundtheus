@@ -78,9 +78,13 @@ function getCardData(cardData) {
   const cardImageElement = cardElement.querySelector(".content__card-image");
   const cardTitleElement = cardElement.querySelector(".content__card-text");
   const likeButton = cardElement.querySelector(".content__card-like-button");
+  const deleteButton = cardElement.querySelector(
+    ".content__card-delete-button"
+  );
 
-  // add the event listener to the delete button
-  // cardElement.remove();
+  deleteButton.addEventListener("click", function () {
+    cardElement.remove();
+  });
 
   //add click listener to the cardImage element
   //openModal with previewImageModal
