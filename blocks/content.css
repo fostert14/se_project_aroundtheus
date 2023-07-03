@@ -25,6 +25,10 @@
   height: 282px;
 }
 
+.content__card-image:hover {
+  cursor: pointer;
+}
+
 .content__card-text {
   text-overflow: ellipsis;
   white-space: nowrap;
