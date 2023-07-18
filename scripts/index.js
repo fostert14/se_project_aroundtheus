@@ -166,36 +166,32 @@ addImageButton.addEventListener("click", function () {
 });
 
 //Like Button Clicked
-
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    if (profileModal.classList.contains("modal_opened")) {
-      closeModal(profileModal);
-    }
-    if (addImageModal.classList.contains("modal_opened")) {
-      closeModal(addImageModal);
-    }
-    if (imagePreviewModal.classList.contains("modal_opened")) {
-      closeModal(imagePreviewModal);
-    }
+    allModals.forEach((modal) => {
+      if (modal.classList.contains("modal_opened")) {
+        closeModal(modal);
+      }
+    });
   }
 });
 
-profileModal.addEventListener("mousedown", function (evt) {
-  if (evt.target === profileModal) {
-    closeModal(profileModal);
+document.addEventListener("mousedown", function (evt) {
+  if (evt.target === modal) {
+    allModals.forEach((modal) => {
+      if (modal.classList.contains("modal_opened")) {
+        closeModal(modal);
+      }
+    });
   }
 });
 
-addImageModal.addEventListener("mousedown", function (evt) {
-  if (evt.target === addImageModal) {
-    closeModal(addImageModal);
-  }
-});
-imagePreviewModal.addEventListener("mousedown", function (evt) {
-  if (evt.target === imagePreviewModal) {
-    return closeModal(imagePreviewModal);
-  }
+allModals.forEach((modal) => {
+  modal.addEventListener("mousedown", function (evt) {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
 });
 
 profileModalCloseButton.addEventListener("click", function () {
