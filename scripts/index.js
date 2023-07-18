@@ -182,3 +182,7 @@ imagePreviewCloseButton.addEventListener("click", function () {
 initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
+
+///                         ///
+/// Form Validation Portion ///
+///                         ///
