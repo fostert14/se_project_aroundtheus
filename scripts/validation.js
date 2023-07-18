@@ -19,13 +19,16 @@ const hideInputError = (formElements, inputElements, { inputErrorClass }) => {
 
 const checkInputValidity = (formElements, inputElement, options) => {
   if (!inputElement.validity.valid) {
-    return showInputError(formElements, inputElement, options);
+    showInputError(formElements, inputElement, options);
+  } else {
+    hideInputError(formElements, inputElement, options);
   }
-  hideInputError(formElements, inputElement, options);
 };
 
 function toggleButtonState(inputElements, submitButtonSelector, options) {
   let foundInvalid = false;
+  submitButtonSelector.classList.add(options.inactiveButtonClass);
+  submitButtonSelector.disabled = true;
   inputElements.forEach((inputElement) => {
     if (!inputElement.validity.valid) {
       foundInvalid = true;
@@ -35,6 +38,7 @@ function toggleButtonState(inputElements, submitButtonSelector, options) {
     return submitButtonSelector.classList.add(options.inactiveButtonClass);
   }
   submitButtonSelector.classList.remove(options.inactiveButtonClass);
+  submitButtonSelector.disabled = false;
 }
 
 const setEventListeners = (formElement, options) => {
@@ -44,6 +48,7 @@ const setEventListeners = (formElement, options) => {
   const submitButtonSelector = formElement.querySelector(
     options.submitButtonSelector
   );
+  toggleButtonState(inputElements, submitButtonSelector, options);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
       checkInputValidity(formElement, inputElement, options);

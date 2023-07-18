@@ -126,7 +126,7 @@
   align-items: center;
   justify-content: center;
   margin: 18px 0 0 0;
-  cursor: pointer;
+  cursor: default;
   border: none;
   transition: opacity 0.1s linear, background-color 0.3s ease, color 0.3s ease;
 }
@@ -220,6 +220,11 @@
   user-select: none;
   border-color: gray;
   border-style: solid;
+}
+
+.modal__submit-button-inactive:hover {
+  cursor: default;
+  opacity: 1;
 }
 
 .modal__error-message {

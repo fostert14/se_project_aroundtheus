@@ -69,12 +69,44 @@ const cardTemplate =
 //open modal function
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("mousedown", closeModalOnRemoteClick);
+  addEscapeToggle(modal);
 }
 
+function escapeKeyListener(modal) {
+  return function (evt) {
+    if (evt.key === "Escape") {
+      closeModal(modal);
+    }
+  };
+}
+
+function addEscapeToggle(modal) {
+  document.addEventListener("keydown", escapeKeyListener(modal));
+}
 //close modal function
+
+function closeModalOnRemoteClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.target);
+  }
+}
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  const formElement = modal.querySelector(".modal__form");
+  const inputElements = Array.from(
+    formElement.querySelectorAll(config.inputSelector)
+  );
+  const submitButtonSelector = formElement.querySelector(
+    config.submitButtonSelector
+  );
+  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
+
+  document.removeEventListener("keydown", escapeKeyListener(modal));
+
+  formElement.reset();
+  toggleButtonState(inputElements, submitButtonSelector, config);
 }
 
 //Have fields to carry over when opening modal
@@ -163,35 +195,6 @@ editButton.addEventListener("click", function () {
 // Add Image Modal
 addImageButton.addEventListener("click", function () {
   openModal(addImageModal);
-});
-
-//Like Button Clicked
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    allModals.forEach((modal) => {
-      if (modal.classList.contains("modal_opened")) {
-        closeModal(modal);
-      }
-    });
-  }
-});
-
-document.addEventListener("mousedown", function (evt) {
-  if (evt.target === modal) {
-    allModals.forEach((modal) => {
-      if (modal.classList.contains("modal_opened")) {
-        closeModal(modal);
-      }
-    });
-  }
-});
-
-allModals.forEach((modal) => {
-  modal.addEventListener("mousedown", function (evt) {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
-  });
 });
 
 profileModalCloseButton.addEventListener("click", function () {
