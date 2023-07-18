@@ -167,6 +167,37 @@ addImageButton.addEventListener("click", function () {
 
 //Like Button Clicked
 
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    if (profileModal.classList.contains("modal_opened")) {
+      closeModal(profileModal);
+    }
+    if (addImageModal.classList.contains("modal_opened")) {
+      closeModal(addImageModal);
+    }
+    if (imagePreviewModal.classList.contains("modal_opened")) {
+      closeModal(imagePreviewModal);
+    }
+  }
+});
+
+profileModal.addEventListener("mousedown", function (evt) {
+  if (evt.target === profileModal) {
+    closeModal(profileModal);
+  }
+});
+
+addImageModal.addEventListener("mousedown", function (evt) {
+  if (evt.target === addImageModal) {
+    closeModal(addImageModal);
+  }
+});
+imagePreviewModal.addEventListener("mousedown", function (evt) {
+  if (evt.target === imagePreviewModal) {
+    return closeModal(imagePreviewModal);
+  }
+});
+
 profileModalCloseButton.addEventListener("click", function () {
   closeModal(profileModal);
 });
@@ -182,7 +213,3 @@ imagePreviewCloseButton.addEventListener("click", function () {
 initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
-
-///                         ///
-/// Form Validation Portion ///
-///                         ///
