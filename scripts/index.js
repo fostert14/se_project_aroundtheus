@@ -91,16 +91,6 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
   modal.removeEventListener("mousedown", closeModalOnRemoteClick);
   document.removeEventListener("keydown", closeModalByEscape);
-  const formElement = modal.querySelector(".modal__form");
-  const inputElements = Array.from(
-    formElement.querySelectorAll(config.inputSelector)
-  );
-  const submitButtonSelector = formElement.querySelector(
-    config.submitButtonSelector
-  );
-
-  formElement.reset();
-  toggleButtonState(inputElements, submitButtonSelector, config);
 }
 
 //Have fields to carry over when opening modal
@@ -153,12 +143,26 @@ function getCardData(cardData) {
   return cardElement;
 }
 
+function toggleButtonAfterSubmit(modal) {
+  const formElement = modal.querySelector(".modal__form");
+  const inputElements = Array.from(
+    formElement.querySelectorAll(config.inputSelector)
+  );
+  const submitButtonSelector = formElement.querySelector(
+    config.submitButtonSelector
+  );
+  toggleButtonState(inputElements, submitButtonSelector, config);
+}
+
 //change input of submitted form
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
   closeModal(profileModal);
+  profileFormElement.reset();
+
+  toggleButtonAfterSubmit(profileModal);
 }
 //submit new card
 function handleImageFormSubmit(evt) {
@@ -169,8 +173,8 @@ function handleImageFormSubmit(evt) {
   renderCard({ link, name });
 
   closeModal(addImageModal);
-
   imageFormElement.reset();
+  toggleButtonAfterSubmit(addImageModal);
 }
 
 //              //
