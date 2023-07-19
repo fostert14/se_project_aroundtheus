@@ -69,21 +69,16 @@ const cardTemplate =
 //open modal function
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalByEscape);
   modal.addEventListener("mousedown", closeModalOnRemoteClick);
-  addEscapeToggle(modal);
 }
 
-function escapeKeyListener(modal) {
-  return function (evt) {
-    if (evt.key === "Escape") {
-      closeModal(modal);
-    }
-  };
+function closeModalByEscape(evt) {
+  if (evt.key === "Escape") {
+    closeModal(document.querySelector(".modal_opened"));
+  }
 }
 
-function addEscapeToggle(modal) {
-  document.addEventListener("keydown", escapeKeyListener(modal));
-}
 //close modal function
 
 function closeModalOnRemoteClick(evt) {
@@ -94,6 +89,8 @@ function closeModalOnRemoteClick(evt) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
+  document.removeEventListener("keydown", closeModalByEscape);
   const formElement = modal.querySelector(".modal__form");
   const inputElements = Array.from(
     formElement.querySelectorAll(config.inputSelector)
@@ -101,9 +98,6 @@ function closeModal(modal) {
   const submitButtonSelector = formElement.querySelector(
     config.submitButtonSelector
   );
-  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
-
-  document.removeEventListener("keydown", escapeKeyListener(modal));
 
   formElement.reset();
   toggleButtonState(inputElements, submitButtonSelector, config);
