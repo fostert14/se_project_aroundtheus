@@ -25,22 +25,19 @@ const checkInputValidity = (formElements, inputElement, options) => {
   }
 };
 
-const checkFormValidity = (inputElements, submitButtonSelector, options) => {
-  let foundInvalid = false;
-  submitButtonSelector.disabled = true;
-  const allValid = inputElements.every(
-    (inputElement) => inputElement.validity.valid
-  );
-  if (!allValid) {
-    return submitButtonSelector.classList.add(options.inactiveButtonClass);
-  }
-  submitButtonSelector.classList.remove(options.inactiveButtonClass);
-  submitButtonSelector.disabled = false;
-};
+const checkFormValidity = (inputs) =>
+  inputs.every((input) => input.validity.valid);
 
 function toggleButtonState(inputElements, submitButtonSelector, options) {
   submitButtonSelector.classList.add(options.inactiveButtonClass);
-  checkFormValidity(inputElements, submitButtonSelector, options);
+  const isFormValid = checkFormValidity(inputElements);
+  if (isFormValid) {
+    submitButtonSelector.classList.remove(options.inactiveButtonClass);
+    submitButtonSelector.disabled = false;
+  } else {
+    submitButtonSelector.classList.add(options.inactiveButtonClass);
+    submitButtonSelector.disabled = true;
+  }
 }
 
 const setEventListeners = (formElement, options) => {
