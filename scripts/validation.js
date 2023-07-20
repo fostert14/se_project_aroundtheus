@@ -29,7 +29,6 @@ const checkFormValidity = (inputs) =>
   inputs.every((input) => input.validity.valid);
 
 function toggleButtonState(inputElements, submitButtonSelector, options) {
-  submitButtonSelector.classList.add(options.inactiveButtonClass);
   const isFormValid = checkFormValidity(inputElements);
   if (isFormValid) {
     submitButtonSelector.classList.remove(options.inactiveButtonClass);
