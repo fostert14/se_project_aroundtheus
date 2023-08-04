@@ -225,6 +225,6 @@ imagePreviewCloseButton.addEventListener("click", function () {
   closeModal(imagePreviewModal);
 });
 
-initialCards.forEach((cardData) => {
-  renderCard(cardData);
-});
+// initialCards.forEach((cardData) => {
+//   renderCard(cardData);
+// });

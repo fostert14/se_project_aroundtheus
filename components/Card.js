@@ -36,7 +36,8 @@ export class Card {
   getView() {
     this._cardElement = document
       .querySelector(this._cardSelector)
-      .content.cloneNode(true);
+      .content.querySelector(".content__card")
+      .cloneNode(true);
 
     //get the card view
     //set event listeners
@@ -52,5 +53,4 @@ export class Card {
       this._name;
     this._cardElement.querySelector(".content__card-image").src = this._link;
   }
-  //    this._element.querySelector(".card__image").style.backgroundImage = `url(${this._image})`;
 }
