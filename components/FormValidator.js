@@ -43,7 +43,7 @@ export class FormValidator {
     }
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     const isFormValid = this._checkFormValidity();
     if (isFormValid) {
       this._submitButtonSelector.classList.remove(this._inactiveButtonClass);
@@ -58,7 +58,7 @@ export class FormValidator {
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }

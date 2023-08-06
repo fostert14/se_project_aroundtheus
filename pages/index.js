@@ -138,6 +138,7 @@ function fillProfileForm() {
 
 function getCardData(cardData) {
   //const cardElement = cardTemplate.cloneNode(true);
+  //cardImageElement Below
   //const cardImageElement = cardElement.querySelector(".coentent__card-imag");
   //const cardTitleElement = cardElement.querySelector(".content__card-text");
   //const likeButton = cardElement.querySelector(".content__card-like-button");
@@ -171,6 +172,10 @@ function getCardData(cardData) {
 
   // deleteButton.addEventListener("click", handleDeleteButton);
   // likeButton.addEventListener("click", handleLikeButtonClick);
+
+  //this event listener is not working.
+  const cardImageElement = document.querySelectorAll(".content__card-image");
+
   cardImageElement.addEventListener("click", handleImageClick);
 
   //cardImageElement.src = cardData.link;
@@ -188,6 +193,7 @@ function toggleButtonAfterSubmit(modal) {
   const submitButtonSelector = formElement.querySelector(
     settings.submitButtonSelector
   );
+  //this isn't working
   toggleButtonState(inputElements, submitButtonSelector, settings);
 }
 
@@ -202,6 +208,7 @@ function handleProfileFormSubmit(evt) {
   toggleButtonAfterSubmit(profileModal);
 }
 //submit new card
+
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
