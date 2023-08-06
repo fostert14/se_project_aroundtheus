@@ -12,7 +12,7 @@ export class Card {
         this._handleLikeIcon();
       });
 
-    const deleteButton = this._cardElement
+    const _deleteButton = this._cardElement
       .querySelector(".content__card-delete-button")
       .addEventListener("click", () => {
         this._handleDeleteIcon();

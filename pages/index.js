@@ -1,4 +1,5 @@
 import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -26,6 +27,14 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button-inactive",
+  inputErrorClass: "modal__input_type_error",
+};
 
 const cardSection = document.querySelector(".content");
 
@@ -71,6 +80,13 @@ const nameInput = document.querySelector('input[name="name"]');
 const descriptionInput = document.querySelector('input[name="description"]');
 const cardTitleInput = addImageModal.querySelector(".modal__input-title");
 const cardLinkInput = addImageModal.querySelector(".modal__input-link");
+
+//calling Form Validation
+
+const editFormValidator = new FormValidator(settings, profileModal);
+const addFormValidator = new FormValidator(settings, addImageModal);
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 //Cards
 
@@ -167,12 +183,12 @@ function getCardData(cardData) {
 function toggleButtonAfterSubmit(modal) {
   const formElement = modal.querySelector(".modal__form");
   const inputElements = Array.from(
-    formElement.querySelectorAll(config.inputSelector)
+    formElement.querySelectorAll(settings.inputSelector)
   );
   const submitButtonSelector = formElement.querySelector(
-    config.submitButtonSelector
+    settings.submitButtonSelector
   );
-  toggleButtonState(inputElements, submitButtonSelector, config);
+  toggleButtonState(inputElements, submitButtonSelector, settings);
 }
 
 //change input of submitted form
