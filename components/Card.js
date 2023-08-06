@@ -1,7 +1,7 @@
 export class Card {
-  constructor(initialCards, cardSelector) {
-    this._name = initialCards.name;
-    this._link = initialCards.link;
+  constructor(cardData, cardSelector) {
+    this._name = cardData.name;
+    this._link = cardData.link;
     this._cardSelector = cardSelector;
   }
 
@@ -17,8 +17,6 @@ export class Card {
       .addEventListener("click", () => {
         this._handleDeleteIcon();
       });
-
-    console.log("set event listeners is working.");
   }
 
   //Handle Methods
@@ -39,8 +37,7 @@ export class Card {
       .content.querySelector(".content__card")
       .cloneNode(true);
 
-    //get the card view
-    //set event listeners
+    //call previously defined methods
     this._renderCard();
     this._setEventListeners();
 

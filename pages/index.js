@@ -29,10 +29,13 @@ const initialCards = [
 
 const cardSection = document.querySelector(".content");
 
-const cardData = initialCards.forEach((card) => {
-  const newCard = new Card(card, "#card-template");
-  const cardElement = newCard.getView();
+const renderCard = (cardData) => {
+  const newCard = new Card(cardData, "#card-template");
+  return newCard.getView();
+};
 
+initialCards.forEach((cardData) => {
+  const cardElement = renderCard(cardData);
   // append the card element to the DOM
   cardSection.appendChild(cardElement);
 });
@@ -119,9 +122,9 @@ function fillProfileForm() {
 
 function getCardData(cardData) {
   //const cardElement = cardTemplate.cloneNode(true);
-  const cardImageElement = cardElement.querySelector(".content__card-image");
-  const cardTitleElement = cardElement.querySelector(".content__card-text");
-  const likeButton = cardElement.querySelector(".content__card-like-button");
+  //const cardImageElement = cardElement.querySelector(".coentent__card-imag");
+  //const cardTitleElement = cardElement.querySelector(".content__card-text");
+  //const likeButton = cardElement.querySelector(".content__card-like-button");
   // const deleteButton = cardElement.querySelector(
   //   ".content__card-delete-button"
   // );
@@ -150,8 +153,8 @@ function getCardData(cardData) {
 
   //Event Listeners
 
-  deleteButton.addEventListener("click", handleDeleteButton);
-  likeButton.addEventListener("click", handleLikeButtonClick);
+  // deleteButton.addEventListener("click", handleDeleteButton);
+  // likeButton.addEventListener("click", handleLikeButtonClick);
   cardImageElement.addEventListener("click", handleImageClick);
 
   //cardImageElement.src = cardData.link;
@@ -188,8 +191,8 @@ function handleImageFormSubmit(evt) {
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
 
-  renderCard({ link, name });
-
+  const cardElement = renderCard({ link, name });
+  cardSection.prepend(cardElement);
   closeModal(addImageModal);
   imageFormElement.reset();
   toggleButtonAfterSubmit(addImageModal);
