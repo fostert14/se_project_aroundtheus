@@ -1,3 +1,9 @@
+import {
+  openModal,
+  closeModalByEscape,
+  closeModalOnRemoteClick,
+} from "../utils/utils.js";
+
 export class Card {
   constructor(cardData, cardSelector) {
     this._name = cardData.name;
@@ -6,6 +12,12 @@ export class Card {
   }
 
   _setEventListeners() {
+    const imageElement = this._cardElement
+      .querySelector(".content__card-image")
+      .addEventListener("click", () => {
+        this._handleImageClick();
+      });
+
     const likeButton = this._cardElement
       .querySelector(".content__card-like-button")
       .addEventListener("click", () => {
@@ -29,6 +41,14 @@ export class Card {
     this._cardElement
       .querySelector(".content__card-like-button")
       .classList.toggle("content__card-like-button_clicked");
+  }
+
+  _handleImageClick() {
+    const imagePreviewModal = document.querySelector("#image-popup");
+    openModal(imagePreviewModal);
+    imagePreviewModal.querySelector(".modal__card-image").src = this._link;
+    imagePreviewModal.querySelector(".modal__image-title").textContent =
+      this._name;
   }
 
   getView() {
