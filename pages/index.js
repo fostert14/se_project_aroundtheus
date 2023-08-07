@@ -87,11 +87,12 @@ const editFormValidator = new FormValidator(settings, profileModal);
 const addFormValidator = new FormValidator(settings, addImageModal);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-
+editFormValidator.toggleButtonState();
+addFormValidator.toggleButtonState();
 //Cards
 
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+// const cardTemplate =
+//   document.querySelector("#card-template").content.firstElementChild;
 
 //          //
 //Functions
@@ -174,7 +175,7 @@ function getCardData(cardData) {
   // likeButton.addEventListener("click", handleLikeButtonClick);
 
   //this event listener is not working.
-  const cardImageElement = document.querySelectorAll(".content__card-image");
+  //const cardImageElement = document.querySelectorAll(".content__card-image");
 
   cardImageElement.addEventListener("click", handleImageClick);
 
@@ -185,17 +186,17 @@ function getCardData(cardData) {
   return cardElement;
 }
 
-function toggleButtonAfterSubmit(modal) {
-  const formElement = modal.querySelector(".modal__form");
-  const inputElements = Array.from(
-    formElement.querySelectorAll(settings.inputSelector)
-  );
-  const submitButtonSelector = formElement.querySelector(
-    settings.submitButtonSelector
-  );
-  //this isn't working
-  toggleButtonState(inputElements, submitButtonSelector, settings);
-}
+// function toggleButtonAfterSubmit(modal) {
+//   const formElement = modal.querySelector(".modal__form");
+//   const inputElements = Array.from(
+//     formElement.querySelectorAll(settings.inputSelector)
+//   );
+//   const submitButtonSelector = formElement.querySelector(
+//     settings.submitButtonSelector
+//   );
+//   //this isn't working
+//   // toggleButtonState(inputElements, submitButtonSelector, settings);
+// }
 
 //change input of submitted form
 function handleProfileFormSubmit(evt) {
@@ -204,21 +205,18 @@ function handleProfileFormSubmit(evt) {
   profileDescription.textContent = descriptionInput.value;
   closeModal(profileModal);
   profileFormElement.reset();
-
-  toggleButtonAfterSubmit(profileModal);
+  editFormValidator.toggleButtonState();
 }
 //submit new card
-
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
-
   const cardElement = renderCard({ link, name });
   cardSection.prepend(cardElement);
   closeModal(addImageModal);
   imageFormElement.reset();
-  toggleButtonAfterSubmit(addImageModal);
+  addFormValidator.toggleButtonState();
 }
 
 //              //
