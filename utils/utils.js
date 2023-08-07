@@ -1,10 +1,3 @@
-import { Card } from "../components/Card.js";
-
-const renderCard = (cardData) => {
-  const newCard = new Card(cardData, "#card-template");
-  return newCard.getView();
-};
-
 export function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEscape);
