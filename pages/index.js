@@ -1,5 +1,11 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
+import {
+  openModal,
+  closeModalByEscape,
+  closeModal,
+  closeModalOnRemoteClick,
+} from "../utils/utils.js";
 
 const initialCards = [
   {
@@ -44,17 +50,9 @@ const cardSection = document.querySelector(".content");
 const profileModal = document.querySelector("#edit_profile_modal");
 const addImageModal = document.querySelector("#add_image_modal");
 const imagePreviewModal = document.querySelector("#image-popup");
-const profileFormElement = profileModal.querySelector(".modal__form");
-const imageFormElement = addImageModal.querySelector(".modal__form");
-const profileModalCloseButton = profileModal.querySelector(
-  ".modal__exit-button"
-);
-const addImageModalCloseButton = addImageModal.querySelector(
-  ".modal__exit-button"
-);
-const imagePreviewCloseButton = imagePreviewModal.querySelector(
-  ".modal__exit-button_image"
-);
+const profileFormElement = document.forms["profile-form"];
+const imageFormElement = document.forms["add-image-form"];
+const closeButtons = document.querySelectorAll(".modal__exit-button");
 const addImageButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__info-description");
@@ -80,18 +78,22 @@ initialCards.forEach((cardData) => {
 // Elements
 //          //
 
-import {
-  openModal,
-  closeModalByEscape,
-  closeModal,
-  closeModalOnRemoteClick,
-} from "../utils/utils.js";
 //calling Form Validation
 
-const editFormValidator = new FormValidator(settings, profileModal);
-const addFormValidator = new FormValidator(settings, addImageModal);
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+const formValidators = {};
+
+// enable validation
+const enableValidation = (settings) => {
+  const formList = [...document.querySelectorAll(settings.formSelector)];
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(settings, formElement);
+    const formName = formElement.getAttribute("name");
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(settings);
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -99,7 +101,7 @@ function handleProfileFormSubmit(evt) {
   profileDescription.textContent = descriptionInput.value;
   closeModal(profileModal);
   profileFormElement.reset();
-  editFormValidator.toggleButtonState();
+  formValidators["profile-form"].resetValidation();
 }
 
 function handleImageFormSubmit(evt) {
@@ -110,7 +112,7 @@ function handleImageFormSubmit(evt) {
   cardSection.prepend(cardElement);
   closeModal(addImageModal);
   imageFormElement.reset();
-  addFormValidator.toggleButtonState();
+  formValidators["add-image-form"].resetValidation();
 }
 
 function fillProfileForm() {
@@ -123,23 +125,16 @@ imageFormElement.addEventListener("submit", handleImageFormSubmit);
 
 editButton.addEventListener("click", function () {
   fillProfileForm();
-  editFormValidator.resetValidation();
+  formValidators["profile-form"].resetValidation();
   openModal(profileModal);
 });
 
 addImageButton.addEventListener("click", function () {
   openModal(addImageModal);
-  addFormValidator.resetValidation();
+  formValidators["add-image-form"].resetValidation();
 });
 
-profileModalCloseButton.addEventListener("click", function () {
-  closeModal(profileModal);
-});
-
-addImageModalCloseButton.addEventListener("click", function () {
-  closeModal(addImageModal);
-});
-
-imagePreviewCloseButton.addEventListener("click", function () {
-  closeModal(imagePreviewModal);
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(popup));
 });
