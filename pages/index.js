@@ -92,8 +92,6 @@ const editFormValidator = new FormValidator(settings, profileModal);
 const addFormValidator = new FormValidator(settings, addImageModal);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-editFormValidator.toggleButtonState();
-addFormValidator.toggleButtonState();
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -125,11 +123,13 @@ imageFormElement.addEventListener("submit", handleImageFormSubmit);
 
 editButton.addEventListener("click", function () {
   fillProfileForm();
+  editFormValidator.resetValidation();
   openModal(profileModal);
 });
 
 addImageButton.addEventListener("click", function () {
   openModal(addImageModal);
+  addFormValidator.resetValidation();
 });
 
 profileModalCloseButton.addEventListener("click", function () {
