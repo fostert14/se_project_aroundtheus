@@ -31,7 +31,7 @@ export class Card {
     );
 
     //event listeners
-    this._imageContainer.addEventListener("click", () => {
+    this._cardImage.addEventListener("click", () => {
       this._handleImageClick();
     });
 

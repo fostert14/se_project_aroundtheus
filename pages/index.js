@@ -101,7 +101,6 @@ function handleProfileFormSubmit(evt) {
   profileDescription.textContent = descriptionInput.value;
   closeModal(profileModal);
   profileFormElement.reset();
-  formValidators["profile-form"].resetValidation();
 }
 
 function handleImageFormSubmit(evt) {
