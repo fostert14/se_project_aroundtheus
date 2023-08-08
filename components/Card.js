@@ -4,6 +4,8 @@ import {
   closeModalOnRemoteClick,
 } from "../utils/utils.js";
 
+const imagePreviewModal = document.querySelector("#image-popup");
+
 export class Card {
   constructor(cardData, cardSelector) {
     this._name = cardData.name;
@@ -12,43 +14,52 @@ export class Card {
   }
 
   _setEventListeners() {
-    const imageElement = this._cardElement
-      .querySelector(".content__card-image")
-      .addEventListener("click", () => {
-        this._handleImageClick();
-      });
+    //define elements
+    this._likeButton = this._cardElement.querySelector(
+      ".content__card-like-button"
+    );
+    this._deleteButton = this._cardElement.querySelector(
+      ".content__card-delete-button"
+    );
+    this._imageContainer = this._cardElement.querySelector(
+      ".content__card-image"
+    );
 
-    const likeButton = this._cardElement
-      .querySelector(".content__card-like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._imagePreview = imagePreviewModal.querySelector(".modal__card-image");
+    this._imagePreviewTitle = imagePreviewModal.querySelector(
+      ".modal__image-title"
+    );
 
-    const _deleteButton = this._cardElement
-      .querySelector(".content__card-delete-button")
-      .addEventListener("click", () => {
-        this._handleDeleteIcon();
-      });
+    //event listeners
+    this._imageContainer.addEventListener("click", () => {
+      this._handleImageClick();
+    });
+
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
+
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteIcon();
+    });
   }
 
   //Handle Methods
 
   _handleDeleteIcon() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".content__card-like-button")
-      .classList.toggle("content__card-like-button_clicked");
+    this._likeButton.classList.toggle("content__card-like-button_clicked");
   }
 
   _handleImageClick() {
-    const imagePreviewModal = document.querySelector("#image-popup");
     openModal(imagePreviewModal);
-    imagePreviewModal.querySelector(".modal__card-image").src = this._link;
-    imagePreviewModal.querySelector(".modal__image-title").textContent =
-      this._name;
+    this._imagePreview.src = this._link;
+    this._imagePreview.alt = this._name;
+    this._imagePreviewTitle.textContent = this._name;
   }
 
   getView() {
@@ -56,6 +67,9 @@ export class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".content__card")
       .cloneNode(true);
+
+    this._cardTitle = this._cardElement.querySelector(".content__card-text");
+    this._cardImage = this._cardElement.querySelector(".content__card-image");
 
     //call previously defined methods
     this._renderCard();
@@ -66,8 +80,8 @@ export class Card {
 
   //render card
   _renderCard() {
-    this._cardElement.querySelector(".content__card-text").textContent =
-      this._name;
-    this._cardElement.querySelector(".content__card-image").src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
   }
 }
