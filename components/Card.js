@@ -6,7 +6,7 @@ import {
 
 const imagePreviewModal = document.querySelector("#image-popup");
 
-export class Card {
+export default class Card {
   constructor(cardData, cardSelector) {
     this._name = cardData.name;
     this._link = cardData.link;
