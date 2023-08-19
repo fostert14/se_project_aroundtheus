@@ -10,7 +10,7 @@ import Card from "../components/Card.js";
 const CardSection = new Section(
   {
     renderer: (item) => {
-      const card = new Card(item, "something...idk what.");
+      const card = new Card(item, "#card-template");
     },
   },
   cardListSelector
