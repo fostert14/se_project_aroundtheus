@@ -3,14 +3,16 @@ import Section from "../components/Section.js";
 
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { cardListSelector } from "../components/constants.js";
+import { cardListSelector, initialCards } from "../components/constants.js";
 import Card from "../components/Card.js";
 
 // render the cards
 const CardSection = new Section(
   {
+    items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#card-template");
+      const newCard = new Card(cardData, "#card-template");
+      initialCards.addItems(newCard);
     },
   },
   cardListSelector
