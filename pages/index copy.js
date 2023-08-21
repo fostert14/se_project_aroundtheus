@@ -60,8 +60,8 @@ const profileDescription = document.querySelector(".profile__info-description");
 // DOM Forms
 // const nameInput = document.querySelector('input[name="name"]');
 const descriptionInput = document.querySelector('input[name="description"]');
-const cardTitleInput = addImageModal.querySelector(".modal__input-title");
-const cardLinkInput = addImageModal.querySelector(".modal__input-link");
+// const cardTitleInput = addImageModal.querySelector(".modal__input-title");
+// const cardLinkInput = addImageModal.querySelector(".modal__input-link");
 
 const renderCard = (cardData) => {
   const newCard = new Card(cardData, "#card-template");
