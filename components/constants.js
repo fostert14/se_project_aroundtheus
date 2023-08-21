@@ -58,3 +58,6 @@ export const enableValidation = (settings) => {
     validator.enableValidation();
   });
 };
+
+export const cardTitleInput = document.querySelector('input[name="title"]');
+export const cardLinkInput = document.querySelector('input[name="link"]');

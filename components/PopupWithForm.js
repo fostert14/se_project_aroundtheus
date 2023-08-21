@@ -14,13 +14,6 @@ export default class PopupWithForm extends Popup {
     super.close();
   }
 
-  _handleProfileFormSubmit() {
-    profileName.textContent = nameInput.value;
-    profileDescription.textContent = descriptionInput.value;
-    closeModal(profileModal);
-    profileFormElement.reset();
-  }
-
   setEventListeners() {
     super.setEventListeners();
     this._popupElement.addEventListener("submit", (evt) => {

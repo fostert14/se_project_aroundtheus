@@ -13,13 +13,21 @@ import {
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImages.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import { handleProfileFormSubmit } from "../utils/utils.js";
+import {
+  handleProfileFormSubmit,
+  handleImageFormSubmit,
+} from "../utils/utils.js";
 
 const imagePopup = new PopupWithImage({ popupSelector: "#image-popup" });
 export const editProfilePopup = new PopupWithForm(
   "#edit_profile_modal",
   handleProfileFormSubmit
 );
+export const addImagePopup = new PopupWithForm("#add_image_modal", (evt) => {
+  handleImageFormSubmit(evt, cardSection, imagePopup, () => {
+    addImagePopup.close();
+  });
+});
 imagePopup.setEventListeners();
 
 // render the cards
