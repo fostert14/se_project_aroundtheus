@@ -9,14 +9,30 @@ import {
   addImageButton,
   enableValidation,
   settings,
+  cardTitleInput,
+  cardLinkInput,
+  formValidators,
 } from "../components/constants.js";
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImages.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import {
-  handleProfileFormSubmit,
-  handleImageFormSubmit,
-} from "../utils/utils.js";
+import { handleProfileFormSubmit } from "../utils/utils.js";
+
+//function
+function handleImageFormSubmit(evt, cardSection, imagePopup) {
+  evt.preventDefault();
+  const name = cardTitleInput.value;
+  const link = cardLinkInput.value;
+  const newCard = new Card(
+    { name: name, link: link },
+    "#card-template",
+    imagePopup
+  );
+  cardSection.addItem(newCard.getView());
+  evt.target.reset();
+  addImagePopup.close();
+  formValidators["add-image-form"].resetValidation();
+}
 
 const imagePopup = new PopupWithImage({ popupSelector: "#image-popup" });
 export const editProfilePopup = new PopupWithForm(
