@@ -47,18 +47,18 @@ const editButton = document.querySelector(".profile__edit-button");
 //modals
 const allModals = document.querySelectorAll(".modal");
 const cardSection = document.querySelector(".content");
-const profileModal = document.querySelector("#edit_profile_modal");
+//const profileModal = document.querySelector("#edit_profile_modal");
 const addImageModal = document.querySelector("#add_image_modal");
 const imagePreviewModal = document.querySelector("#image-popup");
 const profileFormElement = document.forms["profile-form"];
 const imageFormElement = document.forms["add-image-form"];
 const closeButtons = document.querySelectorAll(".modal__exit-button");
-const addImageButton = document.querySelector(".profile__add-button");
+//const addImageButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__info-description");
 
 // DOM Forms
-const nameInput = document.querySelector('input[name="name"]');
+// const nameInput = document.querySelector('input[name="name"]');
 const descriptionInput = document.querySelector('input[name="description"]');
 const cardTitleInput = addImageModal.querySelector(".modal__input-title");
 const cardLinkInput = addImageModal.querySelector(".modal__input-link");
@@ -95,13 +95,13 @@ const enableValidation = (settings) => {
 
 enableValidation(settings);
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = descriptionInput.value;
-  closeModal(profileModal);
-  profileFormElement.reset();
-}
+// function handleProfileFormSubmit(evt) {
+//   evt.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileDescription.textContent = descriptionInput.value;
+//   closeModal(profileModal);
+//   profileFormElement.reset();
+// }
 
 function handleImageFormSubmit(evt) {
   evt.preventDefault();

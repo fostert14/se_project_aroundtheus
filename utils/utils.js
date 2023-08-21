@@ -1,3 +1,11 @@
+import {
+  profileName,
+  nameInput,
+  profileDescription,
+  descriptionInput,
+} from "../components/constants.js";
+import { editProfilePopup } from "../pages/index.js";
+
 export function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEscape);
@@ -20,4 +28,11 @@ export function closeModalOnRemoteClick(evt) {
   if (evt.target === evt.currentTarget) {
     closeModal(evt.target);
   }
+}
+
+export function handleProfileFormSubmit(evt) {
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = descriptionInput.value;
+  editProfilePopup.close();
+  evt.target.reset();
 }

@@ -1,3 +1,5 @@
+import { FormValidator } from "../components/FormValidator.js";
+
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -26,3 +28,33 @@ export const initialCards = [
 ];
 
 export const cardListSelector = ".content";
+export const editButton = document.querySelector(".profile__edit-button");
+export const addImageButton = document.querySelector(".profile__add-button");
+export const nameInput = document.querySelector('input[name="name"]');
+export const profileName = document.querySelector(".profile__info-name");
+export const descriptionInput = document.querySelector(
+  'input[name="description"]'
+);
+export const profileDescription = document.querySelector(
+  ".profile__info-description"
+);
+
+export const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button-inactive",
+  inputErrorClass: "modal__input_type_error",
+};
+
+export const formValidators = {};
+
+export const enableValidation = (settings) => {
+  const formList = [...document.querySelectorAll(settings.formSelector)];
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(settings, formElement);
+    const formName = formElement.getAttribute("name");
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
