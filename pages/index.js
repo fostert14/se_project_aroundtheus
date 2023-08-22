@@ -13,10 +13,9 @@ import {
   cardLinkInput,
   formValidators,
 } from "../components/constants.js";
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImages.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import { handleProfileFormSubmit } from "../utils/utils.js";
+import UserInfo from "../components/UserInfo.js";
 
 //function
 function handleImageFormSubmit(evt, cardSection, imagePopup) {
@@ -34,15 +33,34 @@ function handleImageFormSubmit(evt, cardSection, imagePopup) {
   formValidators["add-image-form"].resetValidation();
 }
 
+function handleProfileFormSubmit(evt) {
+  const name = evt.target.querySelector("#name").value;
+  const description = evt.target.querySelector("#description").value;
+
+  userInfo.setUserInfo({
+    name: name,
+    job: description,
+  });
+
+  editProfilePopup.close();
+  evt.target.reset();
+}
+
+// Instnatiate elements
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__info-name",
+  jobSelector: ".profile__info-description",
+});
+
 const imagePopup = new PopupWithImage({ popupSelector: "#image-popup" });
+
 export const editProfilePopup = new PopupWithForm(
   "#edit_profile_modal",
-  handleProfileFormSubmit
+  (evt) => handleProfileFormSubmit(evt, userInfo)
 );
-export const addImagePopup = new PopupWithForm("#add_image_modal", (evt) => {
-  handleImageFormSubmit(evt, cardSection, imagePopup, () => {
-    addImagePopup.close();
-  });
+const addImagePopup = new PopupWithForm("#add_image_modal", (evt) => {
+  handleImageFormSubmit(evt, cardSection, imagePopup);
 });
 imagePopup.setEventListeners();
 

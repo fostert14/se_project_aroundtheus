@@ -4,7 +4,7 @@ import {
   profileDescription,
   descriptionInput,
 } from "../components/constants.js";
-import { addImagePopup, editProfilePopup } from "../pages/index.js";
+import { editProfilePopup } from "../pages/index.js";
 import Card from "../components/Card.js";
 
 export function openModal(modal) {
@@ -29,11 +29,4 @@ export function closeModalOnRemoteClick(evt) {
   if (evt.target === evt.currentTarget) {
     closeModal(evt.target);
   }
-}
-
-export function handleProfileFormSubmit(evt) {
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = descriptionInput.value;
-  editProfilePopup.close();
-  evt.target.reset();
 }
