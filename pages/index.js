@@ -25,7 +25,8 @@ function handleImageFormSubmit(evt, cardSection, imagePopup) {
   const newCard = new Card(
     { name: name, link: link },
     "#card-template",
-    imagePopup
+    imagePopup,
+    (name, link) => imagePopup.open(name, link)
   );
   cardSection.addItem(newCard.getView());
   evt.target.reset();
@@ -69,7 +70,12 @@ const cardSection = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      const newCard = new Card(cardData, "#card-template", imagePopup);
+      const newCard = new Card(
+        cardData,
+        "#card-template",
+        imagePopup,
+        (name, link) => imagePopup.open(name, link)
+      );
       cardSection.addItem(newCard.getView());
     },
   },

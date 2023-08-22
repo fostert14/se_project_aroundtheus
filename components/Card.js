@@ -1,12 +1,12 @@
-import PopupWithImage from "./PopupWithImages.js";
 const imagePreviewModal = document.querySelector("#image-popup");
 
 export default class Card {
-  constructor(cardData, cardSelector, popupWithImage) {
+  constructor(cardData, cardSelector, popupWithImage, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._popupWithImage = popupWithImage;
+    this._handleCardClick = handleCardClick;
   }
 
   _setEventListeners() {
@@ -52,7 +52,7 @@ export default class Card {
   }
 
   _handleImageClick() {
-    this._popupWithImage.open(this._name, this._link);
+    this._handleCardClick(this._name, this._link);
   }
 
   getView() {
