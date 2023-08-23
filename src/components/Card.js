@@ -1,5 +1,3 @@
-const imagePreviewModal = document.querySelector("#image-popup");
-
 export default class Card {
   constructor(cardData, cardSelector, popupWithImage, handleCardClick) {
     this._name = cardData.name;
@@ -19,11 +17,6 @@ export default class Card {
     );
     this._imageContainer = this._cardElement.querySelector(
       ".content__card-image"
-    );
-
-    this._imagePreview = imagePreviewModal.querySelector(".modal__card-image");
-    this._imagePreviewTitle = imagePreviewModal.querySelector(
-      ".modal__image-title"
     );
 
     //event listeners
