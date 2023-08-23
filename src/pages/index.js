@@ -89,9 +89,11 @@ cardSection.renderItems();
 //specific event listeners
 
 editButton.addEventListener("click", () => {
+  formValidators["profile-form"].resetValidation();
   editProfilePopup.open();
 });
 
 addImageButton.addEventListener("click", () => {
+  formValidators["add-image-form"].resetValidation();
   addImagePopup.open();
 });
