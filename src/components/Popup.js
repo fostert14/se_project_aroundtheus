@@ -22,17 +22,12 @@ export default class Popup {
 
   closeModalByEscape(evt) {
     if (evt.key === "Escape") {
-      this.close();
+      this._popupElement.close();
     }
   }
 
   setEventListeners() {
     this._closeButton = this._popupElement.querySelector(".modal__exit-button");
-    this._popupElement.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("modal_opened")) {
-        this.close();
-      }
-    });
     this._popupElement.addEventListener("keydown", (evt) =>
       this.closeModalByEscape(evt)
     );
