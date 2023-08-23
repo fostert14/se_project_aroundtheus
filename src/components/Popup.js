@@ -7,16 +7,23 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
-    document.addEventListener("keydown", closeModalByEscape);
-    this._popupElement.addEventListener("mousedown", closeModalOnRemoteClick);
+    document.addEventListener("keydown", this.closeModalByEscape);
   }
   close() {
     this._popupElement.classList.remove("modal_opened");
-    document.removeEventListener("keydown", closeModalByEscape);
+    document.removeEventListener("keydown", (evt) =>
+      this.closeModalByEscape(evt)
+    );
     this._popupElement.removeEventListener(
       "mousedown",
       closeModalOnRemoteClick
     );
+  }
+
+  closeModalByEscape(evt) {
+    if (evt.key === "Escape") {
+      this.close();
+    }
   }
 
   setEventListeners() {
@@ -26,6 +33,9 @@ export default class Popup {
         this.close();
       }
     });
+    this._popupElement.addEventListener("keydown", (evt) =>
+      this.closeModalByEscape(evt)
+    );
     this._closeButton.addEventListener("click", () => this.close());
   }
 }
