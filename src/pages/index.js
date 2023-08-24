@@ -8,7 +8,7 @@ import {
   addImageButton,
   settings,
 } from "../components/constants.js";
-import { initialCards, cardListSelector } from "../utils/src";
+import { initialCards, cardListSelector } from "../utils/constnats";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
