@@ -46,7 +46,7 @@ const renderCard = (cardData) => {
     cardData,
     "#card-template",
     imagePopup,
-    (name, link) => imagePopup.open(name, link)
+    (title, link) => imagePopup.open(title, link)
   );
   cardSection.addItem(newCard.getView());
 };
@@ -60,13 +60,16 @@ const userInfo = new UserInfo({
 
 const imagePopup = new PopupWithImage({ popupSelector: "#image-popup" });
 
-export const editProfilePopup = new PopupWithForm(
+const editProfilePopup = new PopupWithForm(
   "#edit_profile_modal",
-  (name, description) => handleProfileFormSubmit(name, description)
+  ({ name, description }) => handleProfileFormSubmit(name, description)
 );
-const addImagePopup = new PopupWithForm("#add_image_modal", (name, link) => {
-  handleImageFormSubmit(name, link);
-});
+const addImagePopup = new PopupWithForm(
+  "#add_image_modal",
+  ({ title, link }) => {
+    handleImageFormSubmit(title, link);
+  }
+);
 editProfilePopup.setEventListeners();
 addImagePopup.setEventListeners();
 imagePopup.setEventListeners();
