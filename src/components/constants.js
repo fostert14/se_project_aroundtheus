@@ -1,4 +1,3 @@
-export const cardListSelector = ".content";
 export const editButton = document.querySelector(".profile__edit-button");
 export const addImageButton = document.querySelector(".profile__add-button");
 export const nameInput = document.querySelector('input[name="name"]');

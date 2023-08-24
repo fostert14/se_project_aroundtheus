@@ -4,12 +4,11 @@ import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import {
-  cardListSelector,
   editButton,
   addImageButton,
   settings,
 } from "../components/constants.js";
-import { initialCards } from "../utils/src";
+import { initialCards, cardListSelector } from "../utils/src";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
