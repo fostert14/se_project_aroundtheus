@@ -1,12 +1,3 @@
-import {
-  profileName,
-  nameInput,
-  profileDescription,
-  descriptionInput,
-} from "../components/constants.js";
-import { editProfilePopup } from "../pages/index.js";
-import Card from "../components/Card.js";
-
 export function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEscape);

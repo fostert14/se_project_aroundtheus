@@ -5,33 +5,31 @@ import Card from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import {
   cardListSelector,
-  initialCards,
   editButton,
   addImageButton,
-  enableValidation,
   settings,
-  cardTitleInput,
-  cardLinkInput,
-  formValidators,
 } from "../components/constants.js";
-import PopupWithImage from "../components/PopupWithImages.js";
+import { initialCards } from "../utils/src";
+import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
+const formValidators = {};
+
 //function
+const enableValidation = (settings) => {
+  const formList = [...document.querySelectorAll(settings.formSelector)];
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(settings, formElement);
+    const formName = formElement.getAttribute("name");
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
 function handleImageFormSubmit(name, link) {
-  // const name = cardTitleInput.value;
-  // const link = cardLinkInput.value;
-  const newCard = new Card(
-    { name: name, link: link },
-    "#card-template",
-    imagePopup,
-    (name, link) => imagePopup.open(name, link)
-  );
-  cardSection.addItem(newCard.getView());
-  //evt.target.reset();
+  renderCard({ name: name, link: link });
   addImagePopup.close();
-  formValidators["add-image-form"].resetValidation();
 }
 
 function handleProfileFormSubmit(name, description) {
@@ -41,8 +39,17 @@ function handleProfileFormSubmit(name, description) {
   });
 
   editProfilePopup.close();
-  // evt.target.reset();
 }
+
+const renderCard = (cardData) => {
+  const newCard = new Card(
+    cardData,
+    "#card-template",
+    imagePopup,
+    (name, link) => imagePopup.open(name, link)
+  );
+  cardSection.addItem(newCard.getView());
+};
 
 // Instnatiate elements
 
@@ -68,15 +75,7 @@ imagePopup.setEventListeners();
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (cardData) => {
-      const newCard = new Card(
-        cardData,
-        "#card-template",
-        imagePopup,
-        (name, link) => imagePopup.open(name, link)
-      );
-      cardSection.addItem(newCard.getView());
-    },
+    renderer: renderCard,
   },
   cardListSelector
 );
