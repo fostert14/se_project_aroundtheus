@@ -44,8 +44,9 @@ function handleProfileFormSubmit(name, description) {
 }
 
 const setEditPopupValues = () => {
-  nameInput.value = userInfo.getUserInfo().name;
-  descriptionInput.value = userInfo.getUserInfo().job;
+  const { name, job } = userInfo.getUserInfo();
+  nameInput.value = name;
+  descriptionInput.value = job;
 };
 
 const renderCard = (cardData) => {
