@@ -7,8 +7,11 @@ import {
   editButton,
   addImageButton,
   settings,
-} from "../components/constants.js";
-import { initialCards, cardListSelector } from "../utils/constnats";
+  initialCards,
+  cardListSelector,
+  nameInput,
+  descriptionInput,
+} from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -39,6 +42,11 @@ function handleProfileFormSubmit(name, description) {
 
   editProfilePopup.close();
 }
+
+const setEditPopupValues = () => {
+  nameInput.value = userInfo.getUserInfo().name;
+  descriptionInput.value = userInfo.getUserInfo().job;
+};
 
 const renderCard = (cardData) => {
   const newCard = new Card(
@@ -89,6 +97,7 @@ cardSection.renderItems();
 
 editButton.addEventListener("click", () => {
   formValidators["profile-form"].resetValidation();
+  setEditPopupValues();
   editProfilePopup.open();
 });
 
