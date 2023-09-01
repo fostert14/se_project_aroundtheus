@@ -15,6 +15,7 @@ import {
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 const formValidators = {};
 
@@ -60,6 +61,14 @@ const renderCard = (cardData) => {
 };
 
 // Instnatiate elements
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "76b0db2f-3cd0-44dc-a915-4a4aebc9f2c3",
+    "Content-Type": "application/json",
+  },
+});
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
