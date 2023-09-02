@@ -35,12 +35,18 @@ function handleImageFormSubmit(name, link) {
 }
 
 function handleProfileFormSubmit(name, description) {
-  userInfo.setUserInfo({
-    name: name,
-    job: description,
-  });
-
-  editProfilePopup.close();
+  api
+    .updateUserInfo({ name: name, about: description })
+    .then((updatedUser) => {
+      userInfo.setUserInfo({
+        name: updatedUser.name,
+        job: updatedUser.about,
+      });
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error("Error updating user info:", err);
+    });
 }
 
 const setEditPopupValues = () => {
