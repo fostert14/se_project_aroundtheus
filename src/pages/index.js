@@ -7,7 +7,6 @@ import {
   editButton,
   addImageButton,
   settings,
-  initialCards,
   cardListSelector,
   nameInput,
   descriptionInput,
@@ -59,9 +58,11 @@ const renderCard = (cardData) => {
   );
   cardSection.addItem(newCard.getView());
 };
+//                  //
+//Api integration
+//                  //
 
-//Tie in Api
-
+//api class
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -70,6 +71,7 @@ const api = new Api({
   },
 });
 
+//Api User Info Fetch Request
 api
   .getUserInfo()
   .then((userData) => {
@@ -80,6 +82,24 @@ api
   })
   .catch((err) => {
     console.error("Error fetching user data:", err);
+  });
+
+//Api Card Fetch Request
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    const cardSection = new Section(
+      {
+        items: cards,
+        renderer: renderCard,
+      },
+      cardListSelector
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error("Error fetching cards:", err);
   });
 
 // Instnatiate elements
@@ -105,17 +125,7 @@ editProfilePopup.setEventListeners();
 addImagePopup.setEventListeners();
 imagePopup.setEventListeners();
 
-// render the cards
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  cardListSelector
-);
-
 enableValidation(settings);
-cardSection.renderItems();
 
 //specific event listeners
 
