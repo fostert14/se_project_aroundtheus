@@ -60,15 +60,29 @@ const renderCard = (cardData) => {
   cardSection.addItem(newCard.getView());
 };
 
-// Instnatiate elements
+//Tie in Api
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "76b0db2f-3cd0-44dc-a915-4a4aebc9f2c3",
+    authorization: "d56fe388-1e54-4c89-a64c-cf770afe6bc4",
     "Content-Type": "application/json",
   },
 });
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({
+      name: userData.name,
+      job: userData.about,
+    });
+  })
+  .catch((err) => {
+    console.error("Error fetching user data:", err);
+  });
+
+// Instnatiate elements
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
