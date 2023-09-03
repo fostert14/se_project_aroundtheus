@@ -1,10 +1,17 @@
 export default class Card {
-  constructor(cardData, cardSelector, popupWithImage, handleCardClick) {
+  constructor(
+    cardData,
+    cardSelector,
+    popupWithImage,
+    handleCardClick,
+    handleDeleteCallback
+  ) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._popupWithImage = popupWithImage;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteCallback = handleDeleteCallback;
   }
 
   _setEventListeners() {
@@ -29,16 +36,16 @@ export default class Card {
     });
 
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteIcon();
+      this._handleDeleteCallback(this._cardElement);
     });
   }
 
   //Handle Methods
 
-  _handleDeleteIcon() {
-    this._cardElement.remove();
-    this._cardElement = null;
-  }
+  // _handleDeleteIcon() {
+  // this._cardElement.remove();
+  // this._cardElement = null;
+  // }
 
   _handleLikeIcon() {
     this._likeButton.classList.toggle("content__card-like-button_clicked");

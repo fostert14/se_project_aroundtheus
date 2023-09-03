@@ -11,10 +11,12 @@ import {
   nameInput,
   descriptionInput,
 } from "../utils/constants.js";
+import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupWithDelete from "../components/PopupWithDelete";
 
 const formValidators = {};
 let cardSection;
@@ -64,6 +66,12 @@ function handleProfileFormSubmit(name, description) {
     });
 }
 
+function handleDeleteConfirmation(cardElement) {
+  cardElement.remove();
+  cardElement = null;
+  deleteImagePopup.close();
+}
+
 const setEditPopupValues = () => {
   const { name, job } = userInfo.getUserInfo();
   nameInput.value = name;
@@ -75,7 +83,10 @@ const renderCard = (cardData) => {
     cardData,
     "#card-template",
     imagePopup,
-    (title, link) => imagePopup.open(title, link)
+    (title, link) => imagePopup.open(title, link),
+    (cardElement) => {
+      deleteImagePopup.open(cardElement);
+    }
   );
   cardSection.addItem(newCard.getView());
 };
@@ -142,6 +153,11 @@ const addImagePopup = new PopupWithForm(
     handleImageFormSubmit(title, link);
   }
 );
+const deleteImagePopup = new PopupWithDelete(
+  "#delete-popup",
+  handleDeleteConfirmation
+);
+deleteImagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addImagePopup.setEventListeners();
 imagePopup.setEventListeners();
