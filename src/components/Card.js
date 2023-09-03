@@ -40,13 +40,6 @@ export default class Card {
     });
   }
 
-  //Handle Methods
-
-  // _handleDeleteIcon() {
-  // this._cardElement.remove();
-  // this._cardElement = null;
-  // }
-
   _handleLikeIcon() {
     this._likeButton.classList.toggle("content__card-like-button_clicked");
   }

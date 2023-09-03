@@ -11,7 +11,6 @@ import {
   nameInput,
   descriptionInput,
 } from "../utils/constants.js";
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -66,10 +65,17 @@ function handleProfileFormSubmit(name, description) {
     });
 }
 
-function handleDeleteConfirmation(cardElement) {
-  cardElement.remove();
-  cardElement = null;
-  deleteImagePopup.close();
+function handleDeleteConfirmation(cardElement, cardID) {
+  api
+    .deleteCard(cardID)
+    .then(() => {
+      cardElement.remove();
+      cardElement = null;
+      deleteImagePopup.close();
+    })
+    .catch((err) => {
+      console.error("Error deleting card:", err);
+    });
 }
 
 const setEditPopupValues = () => {
@@ -85,7 +91,7 @@ const renderCard = (cardData) => {
     imagePopup,
     (title, link) => imagePopup.open(title, link),
     (cardElement) => {
-      deleteImagePopup.open(cardElement);
+      deleteImagePopup.open(cardElement, cardData._id);
     }
   );
   cardSection.addItem(newCard.getView());

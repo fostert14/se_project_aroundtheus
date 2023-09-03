@@ -34,9 +34,25 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
+  addNewCard(cardData) {
+    return fetch(`${this._url}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: cardData.name,
+        link: cardData.link,
+      }),
+    }).then(this._checkResponse);
+  }
+
   getInitialData() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
-  // other methods for working with the API
+  deleteCard(cardID) {
+    return fetch(`${this._url}/cards/${cardID}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
 }
