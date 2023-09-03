@@ -17,6 +17,7 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
 const formValidators = {};
+let cardSection;
 
 //function
 const enableValidation = (settings) => {
@@ -30,7 +31,21 @@ const enableValidation = (settings) => {
 };
 
 function handleImageFormSubmit(name, link) {
-  renderCard({ name: name, link: link });
+  api
+    .addNewCard({ name, link })
+    .then((newCardData) => {
+      const { name, link } = newCardData;
+      cardSection.addItem(
+        new Card(
+          newCardData,
+          "#card-template",
+          imagePopup,
+          imagePopup.open
+        ).getView()
+      );
+    })
+    .catch((err) => console.error("Error adding new card:", err));
+
   addImagePopup.close();
 }
 
@@ -95,7 +110,7 @@ api
 api
   .getInitialCards()
   .then((cards) => {
-    const cardSection = new Section(
+    cardSection = new Section(
       {
         items: cards,
         renderer: renderCard,
