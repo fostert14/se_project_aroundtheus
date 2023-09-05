@@ -127,6 +127,30 @@
       </div>
     </div>
 
+    <!-- Change Profile Picture Modal -->
+    <div class="modal" id="change_profile_picture">
+      <div class="modal__container">
+        <button type="button" class="modal__exit-button"></button>
+        <h2 class="modal__container-title">Change Profile Picture</h2>
+        <form class="modal__form" name="add-image-form">
+          <fieldset class="modal__form-fieldset">
+            <div class="input-field">
+              <input
+                type="url"
+                class="modal__form-input modal__input-link"
+                id="link"
+                name="link"
+                placeholder="Profile Picture Image Link"
+                required
+              />
+              <span class="modal__error-message" id="link-error"></span>
+            </div>
+          </fieldset>
+          <button type="submit" class="modal__submit-button">Create</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Delete Image Popup -->
     <div class="modal" id="delete-popup">
       <div class="modal__container">
