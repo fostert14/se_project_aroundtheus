@@ -34,6 +34,7 @@ const enableValidation = (settings) => {
 };
 
 function handleImageFormSubmit(name, link) {
+  addImagePopup.renderLoading(true);
   api
     .addNewCard({ name, link })
     .then((newCardData) => {
@@ -52,11 +53,11 @@ function handleImageFormSubmit(name, link) {
       );
     })
     .catch((err) => console.error("Error adding new card:", err));
-
   addImagePopup.close();
 }
 
 function handleProfileFormSubmit(name, description) {
+  editProfilePopup.renderLoading(true);
   api
     .updateUserInfo({ name: name, about: description })
     .then((updatedUser) => {
@@ -72,6 +73,7 @@ function handleProfileFormSubmit(name, description) {
 }
 
 function handleAvatarSubmit(link) {
+  editAvatarPopup.renderLoading(true);
   api
     .updateAvatar(link)
     .then((newAvatar) => {
@@ -84,6 +86,7 @@ function handleAvatarSubmit(link) {
 }
 
 function handleDeleteConfirmation(cardElement, cardID) {
+  deleteImagePopup.renderLoading(true);
   api
     .deleteCard(cardID)
     .then(() => {
