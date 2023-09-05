@@ -7,12 +7,48 @@
   padding-bottom: 51px;
 }
 
+.profile__picture-wrapper {
+  z-index: 10;
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
 .profile__picture {
   border-radius: 50%;
   width: 120px;
   height: 120px;
   background-position: center;
   object-fit: cover;
+  transition: opacity 0.1s linear;
+}
+
+.profile__picture_edit_button {
+  position: absolute;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  visibility: hidden;
+  transition: opacity 0.1s linear;
+  background: transparent url(../images/large-pencil.svg) center no-repeat;
+  border: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.profile__picture-wrapper:hover .profile__picture {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.profile__picture-wrapper:hover .profile__picture_edit_button {
+  visibility: visible;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .profile__info {
