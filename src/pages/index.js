@@ -92,7 +92,8 @@ const renderCard = (cardData) => {
     (title, link) => imagePopup.open(title, link),
     (cardElement) => {
       deleteImagePopup.open(cardElement, cardData._id);
-    }
+    },
+    api
   );
   cardSection.addItem(newCard.getView());
 };

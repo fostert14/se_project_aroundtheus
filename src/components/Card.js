@@ -4,7 +4,8 @@ export default class Card {
     cardSelector,
     popupWithImage,
     handleCardClick,
-    handleDeleteCallback
+    handleDeleteCallback,
+    apiInstance
   ) {
     this._name = cardData.name;
     this._link = cardData.link;
@@ -12,6 +13,8 @@ export default class Card {
     this._popupWithImage = popupWithImage;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCallback = handleDeleteCallback;
+    this._api = apiInstance;
+    this._id = cardData._id;
   }
 
   _setEventListeners() {
@@ -41,7 +44,29 @@ export default class Card {
   }
 
   _handleLikeIcon() {
-    this._likeButton.classList.toggle("content__card-like-button_clicked");
+    if (
+      this._likeButton.classList.contains("content__card-like-button_clicked")
+    ) {
+      this._api
+        .removeLike(this._id)
+        .then(() => {
+          this._likeButton.classList.remove(
+            "content__card-like-button_clicked"
+          );
+        })
+        .catch((err) => {
+          console.error("Error removing like:", err);
+        });
+    } else {
+      this._api
+        .addLike(this._id)
+        .then(() => {
+          this._likeButton.classList.add("content__card-like-button_clicked");
+        })
+        .catch((err) => {
+          console.error("error adding like:", err);
+        });
+    }
   }
 
   _handleImageClick() {
