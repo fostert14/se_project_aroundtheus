@@ -63,6 +63,7 @@ function handleProfileFormSubmit(name, description) {
       userInfo.setUserInfo({
         name: updatedUser.name,
         job: updatedUser.about,
+        avatar: userInfo.getUserInfo().avatar,
       });
       editProfilePopup.close();
     })
