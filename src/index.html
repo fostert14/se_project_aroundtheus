@@ -20,11 +20,7 @@
     <main class="page__section">
       <section class="profile">
         <div class="profile__picture-wrapper">
-          <img
-            class="profile__picture"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Profile Picture"
-          />
+          <img class="profile__picture" src="" alt="Profile Picture" />
           <button
             class="profile__picture_edit_button"
             aria-label="Edit Profile Picture Button"
@@ -127,12 +123,12 @@
       </div>
     </div>
 
-    <!-- Change Profile Picture Modal -->
-    <div class="modal" id="change_profile_picture">
+    <!-- Change Avatar Modal -->
+    <div class="modal" id="change_avatar">
       <div class="modal__container">
         <button type="button" class="modal__exit-button"></button>
         <h2 class="modal__container-title">Change Profile Picture</h2>
-        <form class="modal__form" name="add-image-form">
+        <form class="modal__form" name="change-avatar-form">
           <fieldset class="modal__form-fieldset">
             <div class="input-field">
               <input
@@ -146,7 +142,7 @@
               <span class="modal__error-message" id="link-error"></span>
             </div>
           </fieldset>
-          <button type="submit" class="modal__submit-button">Create</button>
+          <button type="submit" class="modal__submit-button">Update</button>
         </form>
       </div>
     </div>

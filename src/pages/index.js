@@ -10,6 +10,8 @@ import {
   cardListSelector,
   nameInput,
   descriptionInput,
+  editAvatarButton,
+  avatarIMG,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -62,6 +64,18 @@ function handleProfileFormSubmit(name, description) {
     })
     .catch((err) => {
       console.error("Error updating user info:", err);
+    });
+}
+
+function handleAvatarSubmit(link) {
+  api
+    .updateAvatar(link)
+    .then((newAvatar) => {
+      avatarIMG.src = newAvatar.avatar;
+      editAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.error("Error updating avatar:", err);
     });
 }
 
@@ -118,6 +132,7 @@ api
       name: userData.name,
       job: userData.about,
     });
+    avatarIMG.src = userData.avatar;
   })
   .catch((err) => {
     console.error("Error fetching user data:", err);
@@ -154,6 +169,11 @@ const editProfilePopup = new PopupWithForm(
   "#edit_profile_modal",
   ({ name, description }) => handleProfileFormSubmit(name, description)
 );
+
+const editAvatarPopup = new PopupWithForm("#change_avatar", ({ link }) =>
+  handleAvatarSubmit(link)
+);
+
 const addImagePopup = new PopupWithForm(
   "#add_image_modal",
   ({ title, link }) => {
@@ -168,6 +188,7 @@ deleteImagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addImagePopup.setEventListeners();
 imagePopup.setEventListeners();
+editAvatarPopup.setEventListeners();
 
 enableValidation(settings);
 
@@ -177,6 +198,11 @@ editButton.addEventListener("click", () => {
   formValidators["profile-form"].resetValidation();
   setEditPopupValues();
   editProfilePopup.open();
+});
+
+editAvatarButton.addEventListener("click", () => {
+  formValidators["change-avatar-form"].resetValidation();
+  editAvatarPopup.open();
 });
 
 addImageButton.addEventListener("click", () => {

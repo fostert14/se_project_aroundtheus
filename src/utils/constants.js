@@ -36,6 +36,11 @@ export const profileDescription = document.querySelector(
   ".profile__info-description"
 );
 
+export const editAvatarButton = document.querySelector(
+  ".profile__picture_edit_button"
+);
+export const avatarIMG = document.querySelector(".profile__picture");
+
 export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__form-input",
