@@ -11,7 +11,6 @@ import {
   nameInput,
   descriptionInput,
   editAvatarButton,
-  avatarIMG,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -77,7 +76,9 @@ function handleAvatarSubmit(link) {
   api
     .updateAvatar(link)
     .then((newAvatar) => {
-      avatarIMG.src = newAvatar.avatar;
+      userInfo.setUserInfo({
+        avatar: newAvatar.avatar,
+      });
       editAvatarPopup.close();
     })
     .catch((err) => {
@@ -138,8 +139,8 @@ api
     userInfo.setUserInfo({
       name: userData.name,
       job: userData.about,
+      avatar: userData.avatar,
     });
-    avatarIMG.src = userData.avatar;
   })
   .catch((err) => {
     console.error("Error fetching user data:", err);
@@ -168,6 +169,7 @@ api
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
   jobSelector: ".profile__info-description",
+  avatarSelector: ".profile__picture",
 });
 
 const imagePopup = new PopupWithImage({ popupSelector: "#image-popup" });
