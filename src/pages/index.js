@@ -43,7 +43,11 @@ function handleImageFormSubmit(name, link) {
           newCardData,
           "#card-template",
           imagePopup,
-          imagePopup.open
+          (title, link) => imagePopup.open(title, link),
+          (cardElement, cardID) => {
+            deleteImagePopup.open(cardElement, newCardData._id);
+          },
+          api
         ).getView()
       );
     })
@@ -145,7 +149,7 @@ api
   .then((cards) => {
     cardSection = new Section(
       {
-        items: cards,
+        items: cards.reverse(),
         renderer: renderCard,
       },
       cardListSelector
