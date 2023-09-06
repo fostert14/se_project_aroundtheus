@@ -8,8 +8,6 @@ import {
   addImageButton,
   settings,
   cardListSelector,
-  nameInput,
-  descriptionInput,
   editAvatarButton,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -22,6 +20,19 @@ const formValidators = {};
 let cardSection;
 
 //function
+
+function handleSubmit(request, popupInstance, loadingText = "Saving...") {
+  popupInstance.renderLoading(true, loadingText);
+  request()
+    .then(() => {
+      popupInstance.close();
+    })
+    .catch(console.error)
+    .finally(() => {
+      popupInstance.renderLoading(false);
+    });
+}
+
 const enableValidation = (settings) => {
   const formList = [...document.querySelectorAll(settings.formSelector)];
   formList.forEach((formElement) => {
@@ -46,24 +57,17 @@ function handleImageFormSubmit(name, link) {
     });
 }
 
-function handleProfileFormSubmit(name, description) {
-  editProfilePopup.renderLoading(true);
-  api
-    .updateUserInfo({ name: name, about: description })
-    .then((updatedUser) => {
+function handleProfileFormSubmit(name, about) {
+  function makeRequest() {
+    return api.updateUserInfo({ name, about }).then((updatedUser) => {
       userInfo.setUserInfo({
         name: updatedUser.name,
-        job: updatedUser.about,
+        about: updatedUser.about,
         avatar: userInfo.getUserInfo().avatar,
       });
-      editProfilePopup.close();
-    })
-    .catch((err) => {
-      console.error("Error updating user info:", err);
-    })
-    .finally(() => {
-      editProfilePopup.renderLoading(false);
     });
+  }
+  handleSubmit(makeRequest, editProfilePopup);
 }
 
 function handleAvatarSubmit(link) {
@@ -102,8 +106,8 @@ function handleDeleteConfirmation(cardElement, cardID) {
 }
 
 const setEditPopupValues = () => {
-  const { name, job } = userInfo.getUserInfo();
-  editProfilePopup.setInputValues({ name: name, about: job });
+  const { name, about } = userInfo.getUserInfo();
+  editProfilePopup.setInputValues({ name, about });
 };
 
 const renderCard = (cardData) => {
@@ -138,7 +142,7 @@ api
   .then((userData) => {
     userInfo.setUserInfo({
       name: userData.name,
-      job: userData.about,
+      about: userData.about,
       avatar: userData.avatar,
     });
   })
@@ -168,7 +172,7 @@ api
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
-  jobSelector: ".profile__info-description",
+  aboutSelector: ".profile__info-description",
   avatarSelector: ".profile__picture",
 });
 
@@ -176,7 +180,7 @@ const imagePopup = new PopupWithImage({ popupSelector: "#image-popup" });
 
 const editProfilePopup = new PopupWithForm(
   "#edit_profile_modal",
-  ({ name, description }) => handleProfileFormSubmit(name, description)
+  ({ name, about }) => handleProfileFormSubmit(name, about)
 );
 
 const editAvatarPopup = new PopupWithForm("#change_avatar", ({ link }) =>
