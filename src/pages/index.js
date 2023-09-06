@@ -37,19 +37,7 @@ function handleImageFormSubmit(name, link) {
   api
     .addNewCard({ name, link })
     .then((newCardData) => {
-      const { name, link } = newCardData;
-      cardSection.addItem(
-        new Card(
-          newCardData,
-          "#card-template",
-          imagePopup,
-          (title, link) => imagePopup.open(title, link),
-          (cardElement, cardID) => {
-            deleteImagePopup.open(cardElement, newCardData._id);
-          },
-          api
-        ).getView()
-      );
+      renderCard(newCardData);
       addImagePopup.close();
     })
     .catch((err) => console.error("Error adding new card:", err))
@@ -148,7 +136,6 @@ const api = new Api({
 api
   .getUserInfo()
   .then((userData) => {
-    console.log(userData);
     userInfo.setUserInfo({
       name: userData.name,
       job: userData.about,
