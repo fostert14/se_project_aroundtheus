@@ -44,17 +44,10 @@ const enableValidation = (settings) => {
 };
 
 function handleImageFormSubmit(name, link) {
-  addImagePopup.renderLoading(true);
-  api
-    .addNewCard({ name, link })
-    .then((newCardData) => {
-      renderCard(newCardData);
-      addImagePopup.close();
-    })
-    .catch((err) => console.error("Error adding new card:", err))
-    .finally(() => {
-      addImagePopup.renderLoading(false);
-    });
+  function makeRequest() {
+    return api.addNewCard({ name, link }).then(renderCard);
+  }
+  handleSubmit(makeRequest, addImagePopup);
 }
 
 function handleProfileFormSubmit(name, about) {
@@ -71,38 +64,24 @@ function handleProfileFormSubmit(name, about) {
 }
 
 function handleAvatarSubmit(link) {
-  editAvatarPopup.renderLoading(true);
-  api
-    .updateAvatar(link)
-    .then((newAvatar) => {
+  function makeRequest() {
+    return api.updateAvatar(link).then((newAvatar) => {
       userInfo.setUserInfo({
         avatar: newAvatar.avatar,
       });
-      editAvatarPopup.close();
-    })
-    .catch((err) => {
-      console.error("Error updating avatar:", err);
-    })
-    .finally(() => {
-      editAvatarPopup.renderLoading(false);
     });
+  }
+  handleSubmit(makeRequest, editAvatarPopup);
 }
 
 function handleDeleteConfirmation(cardElement, cardID) {
-  deleteImagePopup.renderLoading(true);
-  api
-    .deleteCard(cardID)
-    .then(() => {
+  function makeRequest() {
+    return api.deleteCard(cardID).then(() => {
       cardElement.remove();
       cardElement = null;
-      deleteImagePopup.close();
-    })
-    .catch((err) => {
-      console.error("Error deleting card:", err);
-    })
-    .finally(() => {
-      deleteImagePopup.renderLoading(false);
     });
+  }
+  handleSubmit(makeRequest, deleteImagePopup);
 }
 
 const setEditPopupValues = () => {
