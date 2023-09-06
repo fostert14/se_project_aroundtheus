@@ -15,6 +15,7 @@ export default class Card {
     this._handleDeleteCallback = handleDeleteCallback;
     this._api = apiInstance;
     this._id = cardData._id;
+    this._isLiked = cardData.isLiked;
   }
 
   _setEventListeners() {
@@ -81,6 +82,9 @@ export default class Card {
 
     this._cardTitle = this._cardElement.querySelector(".content__card-text");
     this._cardImage = this._cardElement.querySelector(".content__card-image");
+    this._likeButton = this._cardElement.querySelector(
+      ".content__card-like-button"
+    );
 
     //call previously defined methods
     this._renderCard();
@@ -94,5 +98,11 @@ export default class Card {
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
+
+    if (this._isLiked) {
+      this._likeButton.classList.add("content__card-like-button_clicked");
+    } else {
+      this._likeButton.classList.remove("content__card-like-button_clicked");
+    }
   }
 }
