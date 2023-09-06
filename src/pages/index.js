@@ -50,9 +50,12 @@ function handleImageFormSubmit(name, link) {
           api
         ).getView()
       );
+      addImagePopup.close();
     })
-    .catch((err) => console.error("Error adding new card:", err));
-  addImagePopup.close();
+    .catch((err) => console.error("Error adding new card:", err))
+    .finally(() => {
+      addImagePopup.renderLoading(false);
+    });
 }
 
 function handleProfileFormSubmit(name, description) {
@@ -69,6 +72,9 @@ function handleProfileFormSubmit(name, description) {
     })
     .catch((err) => {
       console.error("Error updating user info:", err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
     });
 }
 
@@ -84,6 +90,9 @@ function handleAvatarSubmit(link) {
     })
     .catch((err) => {
       console.error("Error updating avatar:", err);
+    })
+    .finally(() => {
+      editAvatarPopup.renderLoading(false);
     });
 }
 
@@ -98,13 +107,15 @@ function handleDeleteConfirmation(cardElement, cardID) {
     })
     .catch((err) => {
       console.error("Error deleting card:", err);
+    })
+    .finally(() => {
+      deleteImagePopup.renderLoading(false);
     });
 }
 
 const setEditPopupValues = () => {
   const { name, job } = userInfo.getUserInfo();
-  nameInput.value = name;
-  descriptionInput.value = job;
+  editProfilePopup.setInputValues({ name: name, about: job });
 };
 
 const renderCard = (cardData) => {
@@ -137,6 +148,7 @@ const api = new Api({
 api
   .getUserInfo()
   .then((userData) => {
+    console.log(userData);
     userInfo.setUserInfo({
       name: userData.name,
       job: userData.about,

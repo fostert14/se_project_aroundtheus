@@ -6,6 +6,7 @@ export default class PopupWithDelete extends Popup {
     this._handleSubmit = handleSubmit;
     this._form = this._popupElement.querySelector("form");
     this._button = this._form.querySelector("button");
+    this._submitButtonText = this._button.textContent;
   }
 
   open(cardElement, cardID) {
@@ -14,11 +15,11 @@ export default class PopupWithDelete extends Popup {
     super.open();
   }
 
-  renderLoading(isLoading) {
+  renderLoading(isLoading, loadingText = "Removing...") {
     if (isLoading) {
-      this._button.textContent = "Removing...";
+      this._button.textContent = loadingText;
     } else {
-      this._button.textContent = "Save";
+      this._button.textContent = this._submitButtonText;
     }
   }
 
