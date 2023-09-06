@@ -20,9 +20,6 @@ export default class Card {
 
   _setEventListeners() {
     //define elements
-    this._likeButton = this._cardElement.querySelector(
-      ".content__card-like-button"
-    );
     this._deleteButton = this._cardElement.querySelector(
       ".content__card-delete-button"
     );
