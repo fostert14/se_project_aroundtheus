@@ -56,7 +56,7 @@ function handleProfileFormSubmit(name, about) {
       userInfo.setUserInfo({
         name: updatedUser.name,
         about: updatedUser.about,
-        avatar: userInfo.getUserInfo().avatar,
+        avatar: updatedUser.avatar,
       });
     });
   }
