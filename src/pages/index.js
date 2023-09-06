@@ -67,6 +67,8 @@ function handleAvatarSubmit(link) {
   function makeRequest() {
     return api.updateAvatar(link).then((newAvatar) => {
       userInfo.setUserInfo({
+        name: userInfo.getUserInfo().name,
+        about: userInfo.getUserInfo().about,
         avatar: newAvatar.avatar,
       });
     });
