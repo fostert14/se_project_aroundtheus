@@ -65,12 +65,8 @@ function handleProfileFormSubmit(name, about) {
 
 function handleAvatarSubmit(link) {
   function makeRequest() {
-    return api.updateAvatar(link).then((newAvatar) => {
-      userInfo.setUserInfo({
-        name: userInfo.getUserInfo().name,
-        about: userInfo.getUserInfo().about,
-        avatar: newAvatar.avatar,
-      });
+    return api.updateAvatar(link).then((userData) => {
+      userInfo.setUserInfo(userData);
     });
   }
   handleSubmit(makeRequest, editAvatarPopup);
