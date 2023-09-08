@@ -13,8 +13,6 @@ Around The U.S. is a lightweight social media application, where you can insert 
 
 ![Screenshot of App](./src/images/AroundTheUS-Screenshot.png)
 
-_Note: Replace 'path-to-your-screenshot.png' with a real path to a screenshot or gif of your app._
-
 ## Technologies Used
 
 - HTML
