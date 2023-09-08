@@ -1,6 +1,6 @@
 # Around The U.S. : Social Media Light Application
 
-Around The U.S. is a lightweight social media application that allows users to insert image URLs to display them as cards. Users can also edit their profile name, description, and image. Each card is expandable with a click, revealing a larger image accompanied by a name underneath. Designed with an adaptive display, the application provides a seamless interaction across various screen sizes. Moreover, integration with APIs ensures that user content remains saved and persistent.
+Around The U.S. is a social media light application that allows users to insert image URLs to display them as cards. Users can also edit their profile name, description, and image. Each card is expandable with a click, revealing a larger image accompanied by a name underneath. Designed with an adaptive display, the application provides a seamless interaction across various screen sizes. Moreover, integration with APIs ensures that user content remains saved and persistent.
 
 [**Live Site**](https://fostert14.github.io/se_project_aroundtheus/)
 
