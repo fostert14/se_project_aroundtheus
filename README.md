@@ -1,29 +1,25 @@
-# Project 3: Around The U.S.
+# Around The U.S. : Social Media Light Application
 
-### Overview
+Around The U.S. is a lightweight social media application, where you can insert an image url, and it will appear as a Card. With an adaptive display that caters to various screen sizes, it allows users to interact seamlessly regardless of their device. Integration with APIs ensures user content is saved and persistent.
 
-- Intro
-- Figma
-- Images
+[**Live Site**](https://fostert14.github.io/se_project_aroundtheus/)
 
-**Intro**
+## Features
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+- **Adaptive Display**: The application is responsive and fits well on devices of all sizes.
+- **Loose Coupling**: Easily create and instantiate new elements on the website.
+- **Form Validation**: All form popups have required text, and reset when submitted
+- **API Interaction**: Use an API with an authentication token for data persistence.
 
-**Github**
+![Screenshot of App](./src/images/AroundTheUS-Screenshot.png)
 
-- [Link to the project on Github](git@github.com:fostert14/se_project_aroundtheus.git)
+_Note: Replace 'path-to-your-screenshot.png' with a real path to a screenshot or gif of your app._
 
-**Improvements**
-
-A goal is to make the heart buttons interactable so they turn red when the user likes the image.
-
-**Technologies Used**
+## Technologies Used
 
 - HTML
 - CSS
-- Grid Display
-- Flex Display
-- Buttons
-
-Site Live at https://fostert14.github.io/se_project_aroundtheus/
+  - Grid Display
+  - Flex Display
+- JavaScript
+- API Interaction
